@@ -1,0 +1,85 @@
+{# 
+  Este es un archivo de plantilla HTML que utiliza el motor de plantillas de Django.
+  Se utiliza para mostrar los detalles de un registro de cliente específico.    
+    La plantilla hereda de 'base.html' y define un bloque de contenido que se inserta en la estructura base.
+    Se muestran los detalles del cliente, como nombre, email, teléfono, dirección, etc.
+    También incluye botones para volver al home, eliminar el registro actual y actualizarlo.
+
+
+    Se utiliza la sintaxis de Django para acceder a los atributos del objeto 'customer_record'.
+#}
+{% extends 'base.html' %}
+{# 
+  Esta línea indica que este archivo hereda de 'base.html'.
+  Sirve para reutilizar una plantilla principal (generalmente contiene el diseño base, como navbar, footer, etc).
+#%}
+
+
+{% block content %}
+{# 
+  Inicia el bloque de contenido que será insertado dentro del bloque 'content' definido en base.html.
+#%}
+ Esta parte puedes dejarlo  para probar dato  y funiona muy bien 
+<div class="card">
+  <div class="card-header"><strong>
+        {{ customer_record.first_name }} 
+        {{ customer_record.last_name }}</strong>
+  </div>
+  <div class="card-body">
+
+
+    {# Mostramos los campos del cliente uno por uno , esta pare la puedes cpopiar mas tarde#}
+
+<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+
+    <p class="card-text"><strong>Email: </strong>{{ customer_record.email }}</p>
+    <p class="card-text"><strong>Phone: </strong>{{ customer_record.phone }}</p>
+    <p class="card-text"><strong>Address: </strong>{{ customer_record.address }}</p>
+    <p class="card-text"><strong>City: </strong>{{ customer_record.city }}</p>
+    <p class="card-text"><strong>State: </strong>{{ customer_record.state }}</p>
+    <p class="card-text"><strong>Zipcode: </strong>{{ customer_record.zipcode }}</p>
+    <p class="card-text"><strong>Create At: </strong>{{ customer_record.created_at }}</p>
+    <p class="card-text"><strong>ID: </strong>{{ customer_record.id }}</p>
+    
+  </div>
+</div>
+
+
+<br/><br/>
+Esta parte va generar error porque aún no está lista así que pégalo después
+{# Botón para volver al home (vista principal) #}
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+
+{# Botón para eliminar el registro actual #}
+<a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+
+
+{# Botón para actualizar el registro actual #}
+<a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary">Update Record</a>
+
+
+{% endblock %}
+{# Fin del bloque de contenido #}
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+
+<a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+{# <a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary">Update Record</a> #}
+<a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary"> Actualizar registro </a>
+{% endblock %}
+
+
+

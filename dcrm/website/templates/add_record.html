@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="col-md-6 offset-md-3">
+<h1>Add Record</h1>
+<br/>
+
+
+<form method="POST" action="{% url 'add_record' %}">
+    {% csrf_token %}
+
+
+    {{ form.as_p }}
+
+
+<br/>
+  <button type="submit" class="btn btn-secondary">Add Record</button>
+   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+
+</form>
+
+
+</div>
+
+
+{% endblock %}
+class AddRecordForm(forms.ModelForm):
+    # Campo para el primer nombre, requerido, con placeholder y clase CSS.
+    first_name = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Nombre", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para el apellido, requerido, con placeholder y clase CSS.
+    last_name = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Apellido", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para el correo electrónico, requerido, con placeholder y clase CSS.
+    email = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Correo electrónico", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para el teléfono, requerido, con placeholder y clase CSS.
+    phone = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Teléfono", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para la dirección, requerido, con placeholder y clase CSS.
+    address = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Dirección", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para la ciudad, requerido, con placeholder y clase CSS.
+    city = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Ciudad", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para el estado/departamento, requerido, con placeholder y clase CSS.
+    state = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Departamento/Estado", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Campo para el código postal, requerido, con placeholder y clase CSS.
+    zipcode = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={"placeholder": "Código postal", "class": "form-control"}),
+        label=""
+    )
+
+
+    # Define el modelo asociado y los campos excluidos.
+    class Meta:
+        model = Record  # El formulario se basa en el modelo Record.
+        exclude = ("user",)  # El campo user se excluye porque se asigna automáticamente en la vista.
+
+
+
+
